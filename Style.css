@@ -1,0 +1,38 @@
+.first{
+    background-color:midnightblue;
+    height: 20%;
+    padding-left: 30px;
+}
+#one{
+    color:lightgrey;
+    
+}
+#two{
+    color:lightgrey;
+}
+.Third{
+    background-color: aliceblue;
+    padding-left: 30px;
+}
+#mymovieapp{
+    background-color: aliceblue;
+   
+}
+.card{
+    padding-top: 5px;
+}
+.card-title{
+    tab-size: 10px;
+    text-color:black;
+}
+.modal-dialog{
+   background-color: darkgrey;
+   tab-size: 5px;
+   text-align: center;
+   text-decoration-color: black;
+
+
+}
+#close_button{
+    background-color: cadetblue;
+}

@@ -1,0 +1,92 @@
+<html lang="en">
+    <head>
+        <title>Film Info</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        .one{
+    background-color: cornsilk;
+    font-family: fantasy;
+
+      }
+    </style>
+
+ 
+    </head>
+    <body>
+        <div id="app">
+            <div class="one">
+                <h1>Film World</h1>
+
+            </div>
+           
+        
+        <div class="two"> 
+                <ul>
+                    <li><img src="" alt=""></li>
+                    <li><img src=""alt=""></li>
+                   
+                </ul>
+            </div>
+            <div class="three">
+                <label> Enter name</label>
+                <input type="text" class="movieinfo"  placeholder="name" v-model="moviename">
+                <span class="mspan">{{namespan}}</span>
+                <!--  <lable>Movie URL</lable>
+                <input type="image" class="movieinfo" placeholder="imgurl" v-model="movieimg"><br>
+                <span class="mspan">{{imgspan}}</span>
+                <input type="submit">
+                -->
+
+            </div>
+        </div>
+    </body>
+    <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    
+
+    <script>
+        var app = new Vue({
+      el: '#app',
+      data:{
+          moviename:'',
+          namespan:''
+          
+
+      },
+      watch:{
+        moviename:function(){
+            this.namespan=''
+            if (this.moviename.length>=2) {
+            this.lookupmoviename();
+          }
+         }
+        },
+        methods: {
+        lookupmoviename: _.debounce(function() {
+          var app = this
+          app.namespan="searching"
+          axios.post('http://www.omdbapi.com/', {
+          s: 'harry potter',
+          apikey: 'e0620bd4'
+    })
+  
+    .then(function (response) {
+        app.moviename= response.data.t + ', ' +response.data.r
+        })
+        .catch(function (error) {
+                  app.moviename = "Invalid name"
+                })
+
+        }, 500)
+       
+
+      }
+    })
+    </script>
+    </html>
